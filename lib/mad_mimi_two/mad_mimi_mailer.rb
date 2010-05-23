@@ -68,9 +68,9 @@ module MadMimiTwo
           'username' => MadMimiTwo::MadMimiMessage.api_settings[:username],
           'api_key' =>  MadMimiTwo::MadMimiMessage.api_settings[:api_key],
           'promotion_name' => self.promotion, # scott || method.to_s.sub(/^#{method_prefix}_/, ''),
-          'recipients' =>     serialize(self[:to].to_a),
+          'recipients' =>     serialize(self[:to].to_s.split(',')),   #removed to_a, needs comma
           'subject' =>        self[:subject].to_s,
-          'bcc' =>            serialize(self[:bcc].to_a || MadMimiMailer.default_parameters[:bcc]),
+          'bcc' =>            serialize(self[:bcc].to_s.split(',') || MadMimiMailer.default_parameters[:bcc]),
           'from' =>           (self[:from].to_s || MadMimiMailer.default_parameters[:from]),
           'hidden' =>         serialize(self.hidden)
         }
