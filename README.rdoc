@@ -67,8 +67,7 @@ gem mail
 
 == INSTALL:
 
-loading on gem server is a todo...
-download from github to start with :) sorry.
+gem install mad_mimi_two   (it is now up on rubygems.org)
 
 == LICENSE:
 
