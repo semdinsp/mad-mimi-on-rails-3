@@ -1,0 +1,13 @@
+History.txt
+Manifest.txt
+PostInstall.txt
+README.rdoc
+Rakefile
+lib/mad_mimi_two.rb
+lib/mad_mimi_two/mad_mimi_message.rb
+lib/mad_mimi_two/mad_mimi_mailer.rb
+script/console
+script/destroy
+script/generate
+test/test_helper.rb
+test/test_mad_mimi_two.rb
