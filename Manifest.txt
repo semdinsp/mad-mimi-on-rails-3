@@ -4,8 +4,8 @@ PostInstall.txt
 README.rdoc
 Rakefile
 lib/mad_mimi_two.rb
-lib/mad_mimi_two/mad_mimi_message.rb
 lib/mad_mimi_two/mad_mimi_mailer.rb
+lib/mad_mimi_two/mad_mimi_message.rb
 script/console
 script/destroy
 script/generate

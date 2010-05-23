@@ -2,6 +2,10 @@
 
 * http://github.com/semdinsp/mad_mimi_two
 
+courtesy scott sproule
+www.estormtech.com
+www.ficonab.com
+
 
 == DESCRIPTION:
 
@@ -12,18 +16,59 @@ All of the terrible stuff is by me.  Apologies for taking an elegant solution an
 == FEATURES/PROBLEMS:
 
 * FIX (list of features or problems)
+This has only been tested on Ruby 1.8.7.
+Testing on Ruby 1.9 required.
+Currently against rails 3 beta
+
+If someone could suggest how to get rid of this I would be grateful:
+./lib/mad_mimi_two/mad_mimi_mailer.rb:71: warning: default `to_a' will be obsolete
 
 == SYNOPSIS:
+== API CONFIG
+Setup your api key in application.rb  (at the end of the file, after the end for the config)
+ MadMimiTwo::MadMimiMessage.api_settings = {
+    :username => 'your_username@xys.com',
+    :api_key => 'your api key'
+  }
 
-  FIX (code sample of usage)
+== GEMFILE:
+gem 'mad_mimi_two'
+
+== MIMI MODEL
+set up model  (something like this)
+class MadMimi <  MadMimiTwo::MadMimiMessage
+  def self.mimi_promotion(tpromotion,tuser,thashvalues,cclist, tsubj)
+    msg=MadMimiTwo::MadMimiMessage.new do
+      	  subject    tsubj
+     to tuser
+     cc          cclist
+     promotion   tpromotion  #[MAD MIMI PROMOTION NAME]
+     from       'support@estormtech.com'
+     bcc        ["scott.sproule@estormtech.com", "eka.mardiarti@estormtech.com"]
+     email_placeholders        thashvalues  # [VALUES THAT NEED TO BE INSERTED AT MAD MIMI EMAIL  these are the values in {} in the mad mimi email that you want replaced  eg {:url='www.estormtech.com'}]
+     content_type "text/html" 
+   end
+   msg.deliver_mimi_message  # will return the mimi id -like 1151306886 if all ok.
+  end
+end
+
+to use it:
+MadMimi.mimi_promotion('promoname','test@email.com',{:url=>'www.estormtech.com'},'cc@email.com','demo subject')
+this will return a ID from mad mimi like 1151260526
+
+IGNORE: warning: peer certificate won't be verified in this SSL session
+
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+gem activesupport
+gem mail
+(but both of these needed for rails)
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+loading on gem server is a todo...
+download from github to start with :) sorry.
 
 == LICENSE:
 
