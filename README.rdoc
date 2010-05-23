@@ -5,7 +5,7 @@
 courtesy scott sproule
 www.estormtech.com
 
-
+Why use Mad Mimi rather than action mailer?  Primarily since it allows you to separate the design of your emails from the code. Create nice designs on  mad mimi, add analytics tracking urls, and update the contents of promotions via the mad mimi interface rather than trying to do it all in your code.
 
 == DESCRIPTION:
 
@@ -24,7 +24,7 @@ If someone could suggest how to get rid of this I would be grateful:
 ./lib/mad_mimi_two/mad_mimi_mailer.rb:71: warning: default `to_a' will be obsolete
 
 == SYNOPSIS:
-== API CONFIG
+== API CONFIG 
 Setup your api key in application.rb  (at the end of the file, after the end for the config)
  MadMimiTwo::MadMimiMessage.api_settings = {
     :username => 'your_username@xys.com',
@@ -35,7 +35,7 @@ Setup your api key in application.rb  (at the end of the file, after the end for
 gem 'mad_mimi_two'
 
 == MIMI MODEL
-set up model  (something like this)
+set up model  in your rails model directory (something like the following)
 class MadMimi <  MadMimiTwo::MadMimiMessage
   def self.mimi_promotion(tpromotion,tuser,thashvalues,cclist, tsubj)
     msg=MadMimiTwo::MadMimiMessage.new do
@@ -44,7 +44,7 @@ class MadMimi <  MadMimiTwo::MadMimiMessage
      cc          cclist
      promotion   tpromotion  #[MAD MIMI PROMOTION NAME]
      from       'support@estormtech.com'
-     bcc        ["scott.sproule@estormtech.com", "eka.mardiarti@estormtech.com"]
+     bcc        ["xyze@estormtech.com", "abc@estormtech.com"]
      email_placeholders        thashvalues  # [VALUES THAT NEED TO BE INSERTED AT MAD MIMI EMAIL  these are the values in {} in the mad mimi email that you want replaced  eg {:url='www.estormtech.com'}]
      content_type "text/html" 
    end
@@ -58,6 +58,8 @@ this will return a ID from mad mimi like 1151260526
 
 IGNORE: warning: peer certificate won't be verified in this SSL session
 
+== Mail::Message
+As this is subclassed from Mail::Message I believe that other ways to create the message will also work (such as passing in hash, etc (see the documentation))
 
 == REQUIREMENTS:
 
@@ -68,6 +70,10 @@ gem mail
 == INSTALL:
 
 gem install mad_mimi_two   (it is now up on rubygems.org)
+
+== RAILS TESTING:
+
+Apologies but this needs work.  I have simple tests in my application but nothing spectaculre.
 
 == LICENSE:
 
