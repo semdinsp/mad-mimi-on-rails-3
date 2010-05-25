@@ -3,5 +3,5 @@ $:.unshift(File.dirname(__FILE__)) unless
 Dir[File.join(File.dirname(__FILE__), 'mad_mimi_two/**/*.rb')].sort.each { |lib| require lib }
 
 module MadMimiTwo
-  VERSION = '0.0.5'
+  VERSION = '0.0.6'
 end

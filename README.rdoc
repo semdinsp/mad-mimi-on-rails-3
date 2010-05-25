@@ -9,7 +9,7 @@ Why use Mad Mimi rather than action mailer?  Primarily since it allows you to se
 
 == DESCRIPTION:
 
-Using Mad Mimi on rails 3.  All of the elegant portions of the code are based on the original http://github.com/redsquirrel/mad_mimi_mailer by ethangunderson.
+Using Mad Mimi on rails 3.  All of the elegant portions of the code are based on the original http://github.com/redsquirrel/mad_mimi_mailer by ethangunderson. (MadMimiTwo also runs in Rails 2)
 
 All of the terrible stuff is by me.  Apologies for taking an elegant solution and just crafting something that works.
 
@@ -18,7 +18,7 @@ All of the terrible stuff is by me.  Apologies for taking an elegant solution an
 * FIX (list of features or problems)
 This has only been tested on Ruby 1.8.7.
 Testing on Ruby 1.9 required.
-Currently against rails 3 beta
+Currently tested and working with rails 3 beta
 
 
 == SYNOPSIS:
@@ -59,6 +59,18 @@ IGNORE: warning: peer certificate won't be verified in this SSL session
 == Mail::Message
 As this is subclassed from Mail::Message I believe that other ways to create the message will also work (such as passing in hash, etc (see the documentation))
 
+== Check Status of sent message
+ 		t=MadMimiTwo::MadMimiMessage.new
+		r=t.check_status('1159748168')   # this is value from ID
+		 r is 'Sent'	
+
+== RAILS 2:
+NOTE, The same code works in Rails 2 as well.
+except that you need to change environment.rb 
+  config.gem 'mad_mimi_two'
+and at the end of the environment.rb file:
+insert the api settings.
+
 == REQUIREMENTS:
 
 gem activesupport
@@ -71,7 +83,7 @@ gem install mad_mimi_two   (it is now up on rubygems.org)
 
 == RAILS TESTING:
 
-Apologies but this needs work.  I have simple tests in my application but nothing spectaculre.
+Apologies but this needs work.  I have simple tests in my application but nothing spectacular.
 
 == LICENSE:
 

@@ -1,9 +1,31 @@
+require 'cgi'
+require 'rubygems'
+gem 'httpclient'
+require 'httpclient'
+class Hash
+  def madmimiurlencode
+    to_a.map do |name_value|
+      name_value.map { |e| CGI.escape e.to_s }.join '='
+    end.join '&'
+  end
+end
 module MadMimiTwo
   module MadMimiMailer
   SINGLE_SEND_URL = 'https://api.madmimi.com/mailer'
   
   def self.included(base)
     base.extend(ClassMethods)
+  end
+  # check the status of a sent email
+  def check_status(msg_id)
+    url = "#{SINGLE_SEND_URL}s/status/#{msg_id}?#{MadMimiTwo::MadMimiMessage.api_settings.madmimiurlencode}"
+    begin
+      client= HTTPClient.new
+      res=client.get_content(url)
+    rescue HTTPClient::BadResponseError
+      res="problem retrieving status"
+    end
+    res
   end
   
   # Custom Mailer attributes
