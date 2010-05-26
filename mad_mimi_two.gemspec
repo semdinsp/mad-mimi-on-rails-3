@@ -10,7 +10,7 @@
 #rake gemcutter:release
 Gem::Specification.new do |s|
   s.name        = "mad_mimi_two"
-  s.version     = "0.0.6"
+  s.version     = "0.1.0"
   s.author      = "Scott Sproule"
   s.email       = "scott.sproule@estormtech.com"
   s.homepage    = "http://github.com/semdinsp/mad-mimi-on-rails-3"
