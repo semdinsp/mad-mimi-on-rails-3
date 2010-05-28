@@ -19,7 +19,7 @@ class TestMadMimiTwo < Test::Unit::TestCase
      test="hello there"
     hashv={ :body => test, :user => 'string'}
     t=MadMimiTwo::MadMimiMessage.new do
-      subject    'tsubj test subject'
+      subject    'email from test case: test_header'
       to 'scott.sproule@ficonab.com'
     #  cc          admin
       promotion   'new_crm'
@@ -40,7 +40,7 @@ class TestMadMimiTwo < Test::Unit::TestCase
   def test_header_setup2
     test="hello there"
     t=MadMimiTwo::MadMimiMessage.new do
-      subject    'tsubj test subject'
+      subject    'email from test case: test_header_setup2'
       to 'scott.sproule@ficonab.com'
     #  cc          admin
       promotion   'new_crm'
@@ -55,10 +55,10 @@ class TestMadMimiTwo < Test::Unit::TestCase
      assert t.email_placeholders.value?("hello there"), "placeholders seem wrong #{t.email_placeholders}"
     #assert t[:promotion].to_s=='new_crm', 'promotion wrong'
   end
-  def test_sending_mesage
+  def test_sending_mesage # PLEASE NOTE THAT YOUR MAD MIMI ACCOUNT NEEDS PROMOTION CALLED new_crm accepting  user and url
     thash={:user => 'test', :url => 'test.estormtech.com' } 
     t=MadMimiTwo::MadMimiMessage.new do
-      subject    'tsubj test subject'
+      subject    'email from test case: test_sending_message'
       to 'scott.sproule@ficonab.com'
     #  cc          admin
       promotion   'new_crm'
@@ -77,7 +77,7 @@ class TestMadMimiTwo < Test::Unit::TestCase
     #assert t[:promotion].to_s=='new_crm', 'promotion wrong'
   end
   def test_check_status
-   # puts "message id: 1159748168"   (old message id)
+   # puts "message id: 1159748168"   (old message id)  PUT IN ONE OF YOUR MESSAGE IDs to check
     t=MadMimiTwo::MadMimiMessage.new
     r=t.check_status('1159748168')
     puts "'r is ' #{r}"
