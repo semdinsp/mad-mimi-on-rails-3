@@ -2,15 +2,13 @@ require 'rubygems'
 gem 'mail'
 require "mail"
 require "net/https"
-require 'mad_mimi_two'
+require 'mad_mimi_mailer'
 gem 'activesupport'
 require 'active_support/core_ext/class/attribute_accessors'
 
 
 module MadMimiTwo
 class MadMimiMessage < Mail::Message
- 
-
   @@api_settings = {}
   cattr_accessor :api_settings
   

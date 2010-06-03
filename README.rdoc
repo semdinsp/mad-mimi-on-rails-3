@@ -24,12 +24,14 @@ Currently tested and working with rails 3 beta and Rails 2 (same code works)
 == SYNOPSIS:
 == API CONFIG 
 Setup your api key in application.rb  (at the end of the file, after the end for the config)
+require 'mad_mimi_two'   #not certain why this is needed...sigh.
  MadMimiTwo::MadMimiMessage.api_settings = {
     :username => 'your_username@xys.com',
     :api_key => 'your api key'
   }
 
 == GEMFILE:
+gem 'httpclient'
 gem 'mad_mimi_two'
 
 == MIMI MODEL
