@@ -1,4 +1,4 @@
 === 0.0.1 2010-05-23
 
-* First Draft
-  * Initial release
+* 0.5.4
+  * Added bin file to send message from command line

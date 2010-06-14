@@ -87,6 +87,23 @@ gem install mad_mimi_two   (it is now up on rubygems.org)
 
 Apologies but this needs work.  I have simple tests in my application but nothing spectacular.
 
+== DeskTop TESTING:
+
+There is a small command line program where you can test your api settings etc.  'send_mimi.rb'
+example usage is as follows:  (NOTE key is in quotes)
+
+send_mimi.rb -e xxxx@ficonab.com -p new_crm -k 'keyvalue' -u xxxx@yyyy.com -s testing -h "{:user => 'test', :url => 'test.estormtech.com' }"
+# email is xxxxx@ficonab.com
+# promotion is new_crm
+# api key zzzzzz
+# username is qqqqq
+# subject is testing
+# hashvalues are {:user => 'test', :url => 'test.estormtech.com' }
+warning: peer certificate won't be verified in this SSL session
+1282604803   # this is the return value from mad mimi
+
+
+
 == LICENSE:
 
 (The MIT License)

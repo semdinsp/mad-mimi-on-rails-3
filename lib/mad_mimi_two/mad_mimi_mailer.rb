@@ -97,7 +97,7 @@ module MadMimiTwo
           'hidden' =>         serialize(self.hidden)
         }
         params['body']= self.email_placeholders.to_yaml
-puts "params: #{params.inspect} to string #{params.to_s}"
+# puts "params: #{params.inspect} to string #{params.to_s}"
        #scott  params['unconfirmed'] = '1' if mail.unconfirmed
 
       #scott)  if use_erb?(mail)

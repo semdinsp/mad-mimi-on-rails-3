@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{mad_mimi_two}
-  s.version = "0.5.3"
+  s.version = "0.5.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["scott sproule"]
@@ -12,7 +12,8 @@ Gem::Specification.new do |s|
 All of the terrible stuff is by me.  Apologies for taking an elegant solution and just crafting something that works.}
   s.email = ["scott.sproule@ficonab.com"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "PostInstall.txt"]
-  s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "lib/mad_mimi_two.rb", "lib/mad_mimi_two/mad_mimi_mailer.rb", "lib/mad_mimi_two/mad_mimi_message.rb", "script/console", "script/destroy", "script/generate", "test/test_helper.rb", "test/test_mad_mimi_two.rb"]
+  s.executables = ["send_mimi.rb"]
+  s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "lib/mad_mimi_two.rb", "lib/mad_mimi_two/mad_mimi_mailer.rb", "lib/mad_mimi_two/mad_mimi_message.rb", "lib/mad_mimi_two/support.rb", "script/console", "script/destroy", "script/generate", "test/test_helper.rb", "test/test_mad_mimi_two.rb"]
   s.homepage = %q{http://github.com/semdinsp/mad_mimi_two}
   s.post_install_message = %q{For more information on mad_mimi_two, see 
   http://github.com/semdinsp/mad_mimi_two}
