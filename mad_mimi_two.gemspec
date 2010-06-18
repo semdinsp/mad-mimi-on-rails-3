@@ -2,14 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{mad_mimi_two}
-  s.version = "0.5.6"
-
+  s.version = "0.5.7"
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["scott sproule"]
   s.date = %q{2010-05-26}
-  s.description = %q{Using Mad Mimi on rails 3.  All of the elegant portions of the code are based on the original http://github.com/redsquirrel/mad_mimi_mailer by ethangunderson. (MadMimiTwo also runs in Rails 2)
-
-All of the terrible stuff is by me.  Apologies for taking an elegant solution and just crafting something that works.}
+  s.description = %q{Using Mad Mimi on rails 3, rails 2 and from commandline.  All of the elegant portions of the code are based on the original http://github.com/redsquirrel/mad_mimi_mailer by ethangunderson. All of the terrible stuff is by me.  Apologies for taking an elegant solution and just crafting something that works.}
   s.email = ["scott.sproule@ficonab.com"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "PostInstall.txt"]
   s.executables = ["send_mimi.rb"]

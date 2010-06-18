@@ -1,4 +1,8 @@
 === 0.0.1 2010-05-23
 
+* 0.5.7
+	removed strange require issue from new apps in Rail 3 
 * 0.5.4
   * Added bin file to send message from command line
+
+

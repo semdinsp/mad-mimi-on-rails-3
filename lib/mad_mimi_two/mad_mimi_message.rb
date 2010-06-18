@@ -2,7 +2,7 @@ require 'rubygems'
 gem 'mail'
 require "mail"
 require "net/https"
-require 'mad_mimi_mailer'
+#require 'mad_mimi_mailer'
 gem 'activesupport'
 require 'active_support/core_ext/class/attribute_accessors'
 
