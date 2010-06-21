@@ -85,4 +85,12 @@ class TestMadMimiTwo < Test::Unit::TestCase
     assert r=='sent', "message response not correct: #{r}"
      
   end
+  def test_get_promotions
+    t=MadMimiTwo::MadMimiMessage.new
+    r=t.get_promotions()
+    puts "'r is ' #{r}"
+     assert r.class==Hash, "response is not Hash r is: #{r} #{r.class}"
+     assert r.key?('new_CRM'), "does not include new_CRM #{r}"  #this MAY NOT BE IN YOUR promotions list
+     
+  end
 end

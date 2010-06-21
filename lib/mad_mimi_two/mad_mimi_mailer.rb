@@ -2,6 +2,8 @@ require 'cgi'
 require 'rubygems'
 gem 'httpclient'
 require 'httpclient'
+gem 'nokogiri'
+require 'nokogiri'
 class Hash
   def madmimiurlencode
     to_a.map do |name_value|
@@ -11,21 +13,38 @@ class Hash
 end
 module MadMimiTwo
   module MadMimiMailer
-  SINGLE_SEND_URL = 'https://api.madmimi.com/mailer'
+  API_URL = 'https://api.madmimi.com/'
+  SINGLE_SEND_URL = "#{API_URL}mailer"
   
   def self.included(base)
     base.extend(ClassMethods)
   end
+  def send_cmd(url)
+    begin
+        client= HTTPClient.new
+        res=client.get_content(url)
+      rescue HTTPClient::BadResponseError
+        res="problem retrieving status"
+      end
+      res
+  end
+  def get_promotions_xml
+     url="#{API_URL}promotions.xml?#{MadMimiTwo::MadMimiMessage.api_settings.madmimiurlencode}"
+     xml_list=send_cmd(url)
+  end
+  def get_promotions
+     xml_list=get_promotions_xml
+     res={}
+     reader = Nokogiri::XML::Reader(xml_list)
+     reader.each do |node|
+       res=res.merge({ node.attribute('name') => node.attribute('name') }) if node.name=='promotion' # eventually will want hash
+     end
+     res
+  end
   # check the status of a sent email
   def check_status(msg_id)
     url = "#{SINGLE_SEND_URL}s/status/#{msg_id}?#{MadMimiTwo::MadMimiMessage.api_settings.madmimiurlencode}"
-    begin
-      client= HTTPClient.new
-      res=client.get_content(url)
-    rescue HTTPClient::BadResponseError
-      res="problem retrieving status"
-    end
-    res
+    send_cmd(url)
   end
   
   # Custom Mailer attributes

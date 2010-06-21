@@ -102,7 +102,11 @@ send_mimi.rb -e xxxx@ficonab.com -p new_crm -k 'keyvalue' -u xxxx@yyyy.com -s te
 warning: peer certificate won't be verified in this SSL session
 1282604803   # this is the return value from mad mimi
 
+== Get promotion list
+ t=MadMimiTwo::MadMimiMessage.new
+ r=t.get_promotions()
 
+returns a hash of promotions on your account
 
 == LICENSE:
 
