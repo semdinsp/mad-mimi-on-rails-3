@@ -1,5 +1,8 @@
 === 0.0.1 2010-05-23
 
+* 0.5.9
+	support for reply to command
+
 * 0.5.8
 	added promotion list
 
