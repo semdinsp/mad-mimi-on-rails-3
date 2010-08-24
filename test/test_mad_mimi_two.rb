@@ -68,6 +68,27 @@ class TestMadMimiTwo < Test::Unit::TestCase
       email_placeholders       thash  # :user => tuser, :url => turl 
       content_type "text/html"
     end
+     r=t.deliver_mimi_message
+      puts "result: #{r} message:  #{t.inspect}"
+      assert t.headers.size==0, "headers not empty"
+      assert t[:to].to_s=='scott.sproule@ficonab.com', "to person not correct #{t[:to]}"
+      assert t.promotion.to_s=='new_crm', 'promotion first wrong'
+      #assert t[:promotion].to_s=='new_crm', 'promotion wrong'
+    end
+    def test_reply_to # PLEASE NOTE THAT YOUR MAD MIMI ACCOUNT NEEDS PROMOTION CALLED new_crm accepting  user and url
+       thash={:user => 'test', :url => 'test.estormtech.com' } 
+       t=MadMimiTwo::MadMimiMessage.new do
+         subject    'email from test case: test_reply_to'
+         to 'scott.sproule@ficonab.com'
+         reply_to 'scott reply <scott.sproule@ficonab.com>'
+       #  cc          admin
+         promotion   'new_crm'
+         from       'support@estormtech.com'
+         bcc        ["scott.sproule@estormtech.com", "eka.mardiarti@estormtech.com"]
+        # sent_on    Time.now
+         email_placeholders       thash  # :user => tuser, :url => turl 
+         content_type "text/html"
+       end
  #   t.email_placeholders(thash)
     r=t.deliver_mimi_message
     puts "result: #{r} message:  #{t.inspect}"

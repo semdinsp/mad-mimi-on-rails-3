@@ -19,6 +19,7 @@ module MadMimiTwo
   def self.included(base)
     base.extend(ClassMethods)
   end
+  # send  http get url via http client wrapped with exception rescue code
   def send_cmd(url)
     begin
         client= HTTPClient.new
@@ -32,6 +33,7 @@ module MadMimiTwo
      url="#{API_URL}promotions.xml?#{MadMimiTwo::MadMimiMessage.api_settings.madmimiurlencode}"
      xml_list=send_cmd(url)
   end
+  # get a hash of promotion names on mad mimi.  Not certain why mad mimi returns mailing details in this call but we throw it away.
   def get_promotions
      xml_list=get_promotions_xml
      res={}
@@ -113,7 +115,8 @@ module MadMimiTwo
           'subject' =>        self[:subject].to_s,
           'bcc' =>            serialize(self[:bcc].to_s.split(',') || MadMimiMailer.default_parameters[:bcc]),
           'from' =>           (self[:from].to_s || MadMimiMailer.default_parameters[:from]),
-          'hidden' =>         serialize(self.hidden)
+          'hidden' =>         serialize(self.hidden),
+           'reply_to' =>        self[:reply_to].to_s# if !self[:reply_to].nil?
         }
         params['body']= self.email_placeholders.to_yaml
 # puts "params: #{params.inspect} to string #{params.to_s}"
