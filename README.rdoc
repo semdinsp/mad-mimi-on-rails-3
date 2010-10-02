@@ -108,6 +108,11 @@ warning: peer certificate won't be verified in this SSL session
 
 returns a hash of promotions on your account
 
+== Add email address to list  (eg for drip lists)
+
+t=MadMimiTwo::MadMimiMessage.new
+r=t.add_email('driplisttest',"ttt@email2.com")
+
 == LICENSE:
 
 (The MIT License)

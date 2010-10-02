@@ -14,6 +14,7 @@ end
 module MadMimiTwo
   module MadMimiMailer
   API_URL = 'https://api.madmimi.com/'
+  API_URL_HTTP = 'http://api.madmimi.com/'
   SINGLE_SEND_URL = "#{API_URL}mailer"
   
   def self.included(base)
@@ -25,14 +26,34 @@ module MadMimiTwo
         client= HTTPClient.new
         res=client.get_content(url)
       rescue HTTPClient::BadResponseError
-        res="problem retrieving status"
+        res="problem retrieving status: #{res.inspect}"
       end
       res
   end
+  def post_cmd(url,body)
+     begin
+         client= HTTPClient.new
+         res=client.post_content(url,body)
+       rescue HTTPClient::BadResponseError
+         res="problem posting status: #{res.inspect}"
+       end
+       res
+   end
   def get_promotions_xml
      url="#{API_URL}promotions.xml?#{MadMimiTwo::MadMimiMessage.api_settings.madmimiurlencode}"
      xml_list=send_cmd(url)
   end
+  def get_audience_xml
+     url="#{API_URL_HTTP}audience_lists/lists.xml?#{MadMimiTwo::MadMimiMessage.api_settings.madmimiurlencode}"
+     #puts url
+     xml_list=send_cmd(url)
+  end
+  def add_email(list,email)
+     url="#{API_URL_HTTP}audience_lists/#{list}/add?email=#{email}&#{MadMimiTwo::MadMimiMessage.api_settings.madmimiurlencode}"
+     #puts url
+     xml_list=post_cmd(url,"")
+  end
+  #/audience_lists/{name_of_list}/add?email={email_to_add}
   # get a hash of promotion names on mad mimi.  Not certain why mad mimi returns mailing details in this call but we throw it away.
   def get_promotions
      xml_list=get_promotions_xml
@@ -43,9 +64,19 @@ module MadMimiTwo
      end
      res
   end
+  def get_lists
+     xml_list=get_audience_xml
+     res={}
+     reader = Nokogiri::XML::Reader(xml_list)
+     reader.each do |node|
+       res=res.merge({ node.attribute('name') => node.attribute('id')})  # eventually will want hash
+     end
+     res
+  end
   # check the status of a sent email
   def check_status(msg_id)
     url = "#{SINGLE_SEND_URL}s/status/#{msg_id}?#{MadMimiTwo::MadMimiMessage.api_settings.madmimiurlencode}"
+    #puts url
     send_cmd(url)
   end
   

@@ -106,12 +106,27 @@ class TestMadMimiTwo < Test::Unit::TestCase
     assert r=='sent', "message response not correct: #{r}"
      
   end
+  def test_email_address
+    t=MadMimiTwo::MadMimiMessage.new
+    r=t.add_email('driplisttest',"ttt@email2.com")
+    puts "add email list: 'r is ' #{r}"
+    ## assert r.key?('testlist'), "does not include testlist #{r}" 
+     #this MAY NOT BE IN YOUR promotions list
+  end
+  def test_get_audience_list
+    t=MadMimiTwo::MadMimiMessage.new
+    r=t.get_lists()
+    puts "audience list: 'r is ' #{r}"
+     assert r.class==Hash, "response is not Hash r is: #{r} #{r.class}"
+     assert r.key?('testlist'), "does not include testlist #{r}" 
+     #this MAY NOT BE IN YOUR promotions list
+  end
   def test_get_promotions
     t=MadMimiTwo::MadMimiMessage.new
     r=t.get_promotions()
     puts "'r is ' #{r}"
      assert r.class==Hash, "response is not Hash r is: #{r} #{r.class}"
-     assert r.key?('new_CRM'), "does not include new_CRM #{r}"  #this MAY NOT BE IN YOUR promotions list
+    assert r.key?('new_CRM'), "does not include new_CRM #{r}"   #this MAY NOT BE IN YOUR promotions list
      
   end
 end
