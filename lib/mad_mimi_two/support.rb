@@ -20,6 +20,9 @@ module MadMimiTwo
           opts.on("-f","--from VAL", String) {|val|
                                                        temp_hash[:from] = val
                                               puts "# from is #{val}"         }  
+          opts.on("-l","--list VAL", String) {|val|  
+                                              temp_hash[:list] = val
+                                             puts "# list is #{val}"         }
           opts.on("-s","--subject VAL", String) {|val|  
                                                   temp_hash[:subject] = val
                                                  puts "# subject is #{val}"         }                                                                                      
