@@ -57,11 +57,14 @@ module MadMimiTwo
   # get a hash of promotion names on mad mimi.  Not certain why mad mimi returns mailing details in this call but we throw it away.
   def get_promotions
      xml_list=get_promotions_xml
-     res={}
-     reader = Nokogiri::XML::Reader(xml_list)
-     reader.each do |node|
-       res=res.merge({ node.attribute('name') => node.attribute('name') }) if node.name=='promotion' # eventually will want hash
-     end
+     res={'select promotion'=>'select promotion'}
+   #  puts "xml_list is #{xml_list}"
+     if !xml_list.nil? && xml_list != 'problem retrieving status: nil' then
+        reader = Nokogiri::XML::Reader(xml_list)
+         reader.each do |node|
+         res=res.merge({ node.attribute('name') => node.attribute('name') }) if node.name=='promotion' # eventually will want hash
+        end 
+      end 
      res
   end
   def get_lists
