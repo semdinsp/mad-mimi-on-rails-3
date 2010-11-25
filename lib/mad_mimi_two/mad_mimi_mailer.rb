@@ -69,7 +69,8 @@ module MadMimiTwo
   end
   def get_lists
      xml_list=get_audience_xml
-     res={}
+     res={'select list'=>'select list'}
+     
      reader = Nokogiri::XML::Reader(xml_list)
      reader.each do |node|
        res=res.merge({ node.attribute('name') => node.attribute('id')})  # eventually will want hash
