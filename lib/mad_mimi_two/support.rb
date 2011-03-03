@@ -29,45 +29,24 @@ module MadMimiTwo
        opts.on("-d","--debug", "turn on debug") { |val| temp_hash[:debug ] = true              }     
        opts.on("-k","--key VAL", String) { |val| temp_hash[:key ] = val  
                     puts "# mad mimi api key #{temp_hash[:key]}"            }                        
-       opts.on("-H","--help", "get help message") { |val| temp_hash[:help ] = true              }                                        
-                                       
+       opts.on_tail("-H","--help", "get help message") { |val| temp_hash[:help ] = true    
+                                          puts opts          }
+                                                                                                              
        opts.parse(params)
                      # puts " in HTTP #{hostname} port #{port} url: #{url}"
       
       return temp_hash
 
      end # parse options
+       def self.show_usage_exit(usage)
+         # usage=usage.gsub(/^\s*#/,'')
+          puts usage
+          exit   
+        end
   end #class
   # help build xml commands from messages
+  
  
   end  #module
   
-  def RDoc.usage_no_exit(*args)
-      # main_program_file = caller[1].sub(/:\d+$/, '')
-        main_program_file = caller[1].split(':')[0]
-      #puts "main program is #{main_program_file}"
-     # puts " caller is #{caller.inspect}"
-      comment = File.open(main_program_file) do |file|
-        find_comment(file)
-      end
-
-      comment = comment.gsub(/^\s*#/, '')
-
-      markup = SM::SimpleMarkup.new
-      flow_convertor = SM::ToFlow.new
-
-      flow = markup.convert(comment, flow_convertor)
-
-      format = "plain"
-
-      unless args.empty?
-        flow = extract_sections(flow, args)
-      end
-
-      options = RI::Options.instance
-      if args = ENV["RI"]
-        options.parse(args.split)
-      end
-      formatter = options.formatter.new(options, "")
-      formatter.display_flow(flow)
-    end
+ 

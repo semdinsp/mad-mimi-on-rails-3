@@ -1,4 +1,6 @@
 #!/usr/bin/ruby
+usage=<<EOF_USAGE
+
 # == Synopsis
 #   send mad mimi email 
 # == Usage
@@ -10,16 +12,17 @@
 # == Copyright
 #    Copyright (c) 2010 Ficonab Pte. Ltd.
 #     See license for license details
+EOF_USAGE
+
 require 'yaml'
 require 'rubygems'
 gem 'mad_mimi_two'
 require 'mad_mimi_two'
 require 'optparse'
-require 'rdoc/usage'
 #require 'java' if RUBY_PLATFORM =~ /java/
 # start the processing
  arg_hash=MadMimiTwo::Options.parse_options(ARGV)
- RDoc::usage if arg_hash[:help]==true
+ MadMimiTwo::Options.show_usage_exit(usage) if arg_hash[:help]==true
 require 'pp'
 
   options = arg_hash

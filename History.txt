@@ -1,5 +1,8 @@
 === 0.0.1 2010-05-23
 
+* 0.6.6
+Support for 1.9 by removing rdoc/usage
+
 * 0.5.9
 	support for reply to command
 
