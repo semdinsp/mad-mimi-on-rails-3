@@ -1,5 +1,4 @@
 require 'optparse'
-require 'rdoc/usage'
 
 
 module MadMimiTwo
