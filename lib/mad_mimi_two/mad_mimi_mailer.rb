@@ -39,8 +39,8 @@ module MadMimiTwo
        end
        res
    end
-  def get_promotions_xml
-     url="#{API_URL}promotions.xml?#{MadMimiTwo::MadMimiMessage.api_settings.madmimiurlencode}"
+  def get_promotions_xml(page)
+     url="#{API_URL}promotions.xml?page=#{page}&#{MadMimiTwo::MadMimiMessage.api_settings.madmimiurlencode}"
      xml_list=send_cmd(url)
   end
   def get_audience_xml
@@ -55,9 +55,9 @@ module MadMimiTwo
   end
   #/audience_lists/{name_of_list}/add?email={email_to_add}
   # get a hash of promotion names on mad mimi.  Not certain why mad mimi returns mailing details in this call but we throw it away.
-  def get_promotions
-     xml_list=get_promotions_xml
-     res={'select promotion'=>'select promotion'}
+  def get_promotions_internal(page)
+     xml_list=get_promotions_xml(page)
+     res={}
    #  puts "xml_list is #{xml_list}"
      if !xml_list.nil? && xml_list != 'problem retrieving status: nil' then
         reader = Nokogiri::XML::Reader(xml_list)
@@ -66,6 +66,16 @@ module MadMimiTwo
         end 
       end 
      res
+  end
+  def get_promotions
+    res={'select promotion'=>'select promotion'}
+    1.upto(5)  { |i|   #only up to three pages now
+      #puts "i is #{i}"
+      tmp=get_promotions_internal(i)
+      break if tmp.empty?
+      res= res.merge(tmp)
+    }
+    res
   end
   def get_lists
      xml_list=get_audience_xml
